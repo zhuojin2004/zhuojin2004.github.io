@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+# 工作素材与中间产物（不部署）
+_source/
+_shots/
+# 中文本地工作副本，部署入口为 index.html（内容一致）
+卓锦华-个人网站.html

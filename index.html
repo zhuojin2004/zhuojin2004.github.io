@@ -216,7 +216,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .exp-main p{font-size:14px;color:var(--text-muted);line-height:1.7}
 .exp-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex:none}
 .exp-date{font-size:13px;color:var(--text-faint);white-space:nowrap}
-.exp-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-soft);display:grid;place-items:center;color:var(--text-muted);transition:.15s}
+.exp-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-soft);display:grid;place-items:center;color:var(--text-muted);transition:.15s;flex:none}
+a.exp-arrow{text-decoration:none;background:transparent;padding:0;cursor:pointer}
 .exp-card:hover .exp-arrow{background:var(--bg-inverse);color:var(--text-inverse);border-color:var(--bg-inverse)}
 @media(max-width:600px){.exp-card{flex-wrap:wrap}.exp-side{flex-direction:row;align-items:center;justify-content:space-between;width:100%;order:3}}
 
@@ -779,7 +780,7 @@ body.apx-open{overflow:hidden}
       <button class="apx-cell" type="button" data-src="assets/appendix/h2-05.jpg" data-title="省级竞赛奖项 5" aria-label="查看大图：省级竞赛奖项 5"><img src="assets/appendix/h2-05.jpg" alt="省级竞赛奖项 5" loading="lazy" decoding="async"></button>
     </div>
   </div>
-  <div class="apx-group reveal">
+  <div class="apx-group reveal" id="proof-appointment" style="scroll-margin-top:90px">
     <div class="apx-g-head">
       <h3>任职聘书 · 奖学金 · 荣誉称号</h3>
       <span class="apx-g-count">12 项</span>
@@ -1161,7 +1162,7 @@ const EXPERIENCE = [
   {logo:"本科<br>计科", name:"浙江工商大学杭州商学院", role:"本科 · 计算机科学与技术", chip:"2022–2026",
    desc:"主修人工智能概论、Python 与数据挖掘、数据可视化技术、数据库原理、互联网编程技术；在校期间以 EcoMimic 3.0 项目获中国高校智能机器人创意大赛全国一等奖，并连续三年获浙江省政府奖学金，累计校级以上荣誉 30 余项。", date:"2022.09 – 2026.06"},
   {logo:"学生<br>工作", name:"学生工作与志愿服务", role:"易班工作站组织部部长 · 党员之家干事", chip:"2022–2026",
-   desc:"任校易班工作站组织部部长、党员之家干事，承担组织协调与日常党务工作；连续三年担任学习委员且考核优秀；累计志愿服务近 {{n:500}} 小时。", date:"2022 – 2026"},
+   desc:"任校易班工作站组织部部长、党员之家干事，承担组织协调与日常党务工作；连续三年担任学习委员且考核优秀；累计志愿服务近 {{n:500}} 小时。", date:"2022 – 2026", anchor:"#proof-appointment"},
 ];
 
 /* ---------- 认证与赛场 ---------- */
@@ -1301,7 +1302,9 @@ function renderExp(){
       </div>
       <div class="exp-side">
         <span class="exp-date">${esc(e.date)}</span>
-        <button class="exp-arrow" data-soon="完整经历 / 证明材料，链接待填写"><svg class="ic ic-sm" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        ${e.anchor
+          ? `<a class="exp-arrow" href="${e.anchor}" aria-label="查看证明材料"><svg class="ic ic-sm" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></a>`
+          : `<button class="exp-arrow" data-soon="完整经历 / 证明材料，链接待填写"><svg class="ic ic-sm" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`}
       </div>
     </div>`).join("");
 }
